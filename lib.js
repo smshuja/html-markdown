@@ -150,8 +150,10 @@ module.exports = {
         var urlObj = require('url').parse(url);
         protocol = urlObj.protocol.replace(/:$/, '');
         var protocolPackage = null;
-        if (protocol === 'http' || protocol === 'https') {
-            protocolPackage = require(protocol);
+        if (protocol === 'http') {
+            protocolPackage = require('http');
+        } else if (protocol === 'https') {
+            protocolPackage = require('https');
         } else {
             return Promise.reject("illegal protocol: " + protocol)
         }
